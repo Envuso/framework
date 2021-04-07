@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "strict": false,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "types": [
+      // add node as an option
+      "node",
+      "reflect-metadata",
+      "jest"
+    ],
+    "typeRoots": [
+      // add path to @types
+      "node_modules/@types",
+      "node_modules/@tsframework/framework/types"
+    ],
+    "paths": {
+      "@Core/*": [
+        "node_modules/@tsframework/framework/src/Core/*"
+      ],
+      "@Providers/*": [
+        "node_modules/@tsframework/framework/src/Core/Providers/*"
+      ],
+      "@Decorators": [
+        "node_modules/@tsframework/framework/src/Core/Decorators/index.ts"
+      ],
+      "@App/*": [
+        "src/App/*"
+      ],
+      "@AppControllers/*": [
+        "src/App/Http/Controllers/*"
+      ],
+      "@AppMiddlewares/*": [
+        "src/App/Http/Middleware/*"
+      ],
+      "@Config": [
+        "src/Config/index.ts"
+      ]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
