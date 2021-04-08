@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "watch": "webpack --watch --progress --mode development",
     "serve": "nodemon dist/main.js",
