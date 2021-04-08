@@ -23,17 +23,17 @@
     "typeRoots": [
       // add path to @types
       "node_modules/@types",
-      "node_modules/@tsframework/framework/types"
+      "node_modules/@envuso/core/types"
     ],
     "paths": {
       "@Core/*": [
-        "node_modules/@tsframework/framework/src/Core/*"
+        "node_modules/@envuso/core/src/Core/*"
       ],
       "@Providers/*": [
-        "node_modules/@tsframework/framework/src/Core/Providers/*"
+        "node_modules/@envuso/core/src/Core/Providers/*"
       ],
       "@Decorators": [
-        "node_modules/@tsframework/framework/src/Core/Decorators/index.ts"
+        "node_modules/@envuso/core/src/Core/Decorators/index.ts"
       ],
       "@App/*": [
         "src/App/*"

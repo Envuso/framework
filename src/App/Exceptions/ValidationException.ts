@@ -9,11 +9,6 @@ export class ValidationException extends Exception {
 	constructor(errors: Array<ValidationError> | { [key: string]: string }) {
 		super("Woops something went wrong.", StatusCodes.UNPROCESSABLE_ENTITY);
 
-//		if (validator instanceof Validator) {
-//			this.processErrors(validator.errors.all());
-//			return;
-//		}
-
 		this.errors = errors;
 
 		this.response = {
@@ -32,6 +27,11 @@ export class ValidationException extends Exception {
 		return exception;
 	}
 
+	/**
+	 * Format the different types of validation exception messages
+	 *
+	 * @private
+	 */
 	private processErrors() {
 		let errors = {};
 
@@ -60,16 +60,6 @@ export class ValidationException extends Exception {
 		errors = {...this.errors, ...errors};
 
 		return errors;
-
-//		Object.keys(this.errors).forEach(errorKey => {
-//			if (this.errors[errorKey] instanceof ValidationError) {
-//				errors[errorKey] =
-//			}
-//
-//			errors[errorKey] = validationErrors[errorKey][0];
-//		});
-//
-//		this.errors = errors;
 	}
 
 

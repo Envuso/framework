@@ -13,6 +13,7 @@
     "@babel/plugin-proposal-decorators": "^7.13.5",
     "@babel/plugin-proposal-private-property-in-object": "^7.13.0",
     "@babel/plugin-transform-classes": "^7.13.0",
+    "@envuso/core": "^0.0.1",
     "axios": "^0.21.1",
     "babel-plugin-replace-ts-export-assignment": "^0.0.2",
     "bcrypt": "^5.0.1",

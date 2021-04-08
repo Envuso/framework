@@ -2,15 +2,11 @@ import {AuthCredentialContract} from "@App/Contracts/AuthContracts";
 import {ValidationException} from "@App/Exceptions/ValidationException";
 import {AuthorizationMiddleware} from "@App/Http/Middleware/AuthorizationMiddleware";
 import {User} from "@App/Models/User";
-import { response, request } from "@Core/Helpers";
 import { Auth, Hash  } from "@Core/Providers";
-import {body, controller, dto, get, headers, middleware, param, put , post, query} from "@Decorators";
-import {Controller, DataTransferObject, HttpContext} from "@Providers/Http";
+import {controller, dto, get, middleware, post} from "@Decorators";
+import {Controller, DataTransferObject} from "@Providers/Http";
 import {Transform} from "class-transformer";
 import {IsAlphanumeric, IsEmail, IsNotEmpty, IsString, Length} from "class-validator";
-import {StatusCodes} from "http-status-codes";
-
-
 
 
 class LoginBody extends DataTransferObject implements AuthCredentialContract {
@@ -38,22 +34,6 @@ class RegistrationBody extends LoginBody {
 @controller('/auth')
 export class AuthController extends Controller {
 
-	@put('/user/avatar')
-	async uploadAvatar() {
-
-		response().badRequest('Something went wrong');
-		response().notFound('Woopsie, 404');
-		response().redirect('https://google.com');
-		response().json({hello : 'world'});
-		response().validationFailure({email : 'Invalid email.'})
-		response().header('Location', 'https://google.com');
-		response()
-			.setResponse({ message : 'Oh no!'}, StatusCodes.INTERNAL_SERVER_ERROR)
-			.send();
-		response().fastifyReply
-
-	}
-
 	@post('/login')
 	async login(@dto() loginBody: LoginBody) {
 
@@ -64,8 +44,6 @@ export class AuthController extends Controller {
 		}
 
 		return {
-			sdkfjs : 'GET OUT',
-
 			user  : Auth.user(),
 			token : Auth.user().generateToken()
 		};
@@ -80,7 +58,7 @@ export class AuthController extends Controller {
 			});
 		}
 
-		const user = await User.create({
+		const user = await User.create<User>({
 			name        : registration.name,
 			email       : registration.email,
 			password    : await Hash.make(registration.password),
@@ -89,7 +67,6 @@ export class AuthController extends Controller {
 		});
 
 		Auth.loginAs(user);
-
 
 		return {
 			user  : Auth.user(),
@@ -100,10 +77,7 @@ export class AuthController extends Controller {
 	@middleware(new AuthorizationMiddleware())
 	@get('/user')
 	async authedUser() {
-		return {
-			contextUser : HttpContext.get().user,
-			authUser    : Auth.user()
-		}
+		 return Auth.user();
 	}
 
 }

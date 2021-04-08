@@ -6,7 +6,7 @@ import {CacheServiceProvider} from "@Providers/Cache/CacheServiceProvider";
 import {ControllerServiceProvider} from "@Providers/Http/Controller/ControllerServiceProvider";
 import {AuthServiceProvider} from "@Providers/Auth/AuthServiceProvider";
 import {StorageServiceProvider} from "@Providers/Storage/StorageServiceProvider";
-import {FastifyPlugin, FastifyPluginOptions, FastifyRegister} from "fastify";
+import {FastifyPlugin, FastifyPluginOptions} from "fastify";
 
 import {default as FastifyMultipart, FastifyMultipartOptions} from "fastify-multipart";
 

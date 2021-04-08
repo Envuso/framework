@@ -1,5 +1,5 @@
 import {Id} from "@Core/Decorators/ModelDecorators";
-import {Exclude, Expose, Type} from "class-transformer";
+import {Exclude, Type} from "class-transformer";
 import {IsEmail, IsNotEmpty} from "class-validator";
 import {ModelEntity} from "@Providers/Model/ModelEntity";
 import {injectable} from "inversify";
@@ -23,9 +23,6 @@ export class User extends ModelEntity<User> {
 	password: string;
 
 	createdAt: Date;
-
-	@Type(() => Number)
-	something: number;
 }
 
 
