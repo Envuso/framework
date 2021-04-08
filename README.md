@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://envuso.com" target="_blank"><img src="https://envuso.com/assets/logo.png" width="300"></a>
+	<a href="https://envuso.com" target="_blank"><img src="https://envuso.com/assets/mid.png" width="300"></a>
 </p>
 
 <p align="center">
