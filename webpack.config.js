@@ -25,12 +25,12 @@ module.exports = {
 	resolve   : {
 		modules    : [
 			path.resolve(__dirname, 'src', 'App', 'Http', 'Controller'),
-			path.resolve('node_modules', '@tsframework', 'framework', 'src'),
+			path.resolve('node_modules', '@envuso', 'core', 'src'),
 		],
 		alias      : {
-			'@Core'           : path.resolve('node_modules', '@tsframework', 'framework', 'src', 'Core'),
-			'@Providers'      : path.resolve('node_modules', '@tsframework', 'framework', 'src', 'Core', 'Providers'),
-			'@Decorators'     : path.resolve('node_modules', '@tsframework', 'framework', 'src', 'Core', 'Decorators', 'index.ts'),
+			'@Core'           : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core'),
+			'@Providers'      : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core', 'Providers'),
+			'@Decorators'     : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core', 'Decorators', 'index.ts'),
 			'@App'            : path.resolve(__dirname, 'src', 'App'),
 			'@AppControllers' : path.resolve(__dirname, 'src', 'App', 'Http', 'Controller'),
 			'@AppMiddlewares' : path.resolve(__dirname, 'src', 'App', 'Http', 'Middleware'),
