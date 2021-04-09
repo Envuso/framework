@@ -8,7 +8,7 @@
 </p>
 
 # Warning:
-Envuso is currently a WIP. I'm currently resolving a couple of issues and getting everything read. Docs are incomplete and I'm often pushing updates. Wait a week or so and it should be ready to use.
+Envuso is currently a WIP. I'm currently resolving a couple of issues and getting everything ready. Docs are incomplete and I'm often pushing updates. Wait a week or so and it should be ready to use.
 
 ## Envuso framework
 
