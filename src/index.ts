@@ -1,27 +1,28 @@
-import {whenBootstrapped} from "@Core/Bootstrap";
-import {App} from "@Core/App";
-import Container from "@Core/Container";
-import {ServerServiceProvider} from "@Core/Providers";
+import {Envuso, Log, response} from "@envuso/core";
+import {config} from 'dotenv';
+import {FastifyReply, FastifyRequest} from "fastify";
+import {StatusCodes} from "http-status-codes";
+
+config();
 
 //@ts-ignore
 global.disableConsoleLogs = false;
 
-const app = new App();
+const envuso = new Envuso();
 
-export async function bootApp() {
-	app.registerProviders();
-	await app.registerProviderBindings();
-	await app.bootProviders();
-	await app.up();
-}
+envuso.prepare()
+	.then(() => {
+		envuso.addExceptionHandler(async (exception: Error, request: FastifyRequest, reply: FastifyReply) => {
 
-export function destroyApp() {
-	app.down();
-}
+			console.trace(exception);
 
-whenBootstrapped().then(async () => {
-	await bootApp();
+			return response().setResponse({
+				error : exception
+			}, StatusCodes.INTERNAL_SERVER_ERROR);
 
-	await Container.get<ServerServiceProvider>(ServerServiceProvider).run();
-});
-
+		});
+	})
+	.catch(error => {
+		Log.error(error)
+		console.trace(error);
+	});

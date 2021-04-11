@@ -5,36 +5,32 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "rootDir": ".",
+    "sourceRoot": "./src",
     "strict": false,
     "sourceMap": true,
     "moduleResolution": "node",
     "target": "es6",
     "lib": [
       "es5",
-      "es6",
-      "dom"
+      "es6"
     ],
     "types": [
-      // add node as an option
       "node",
       "reflect-metadata",
-      "jest"
+      "jest",
+      "@envuso/core",
+      "@envuso/common",
+      "@envuso/routing",
+      "@envuso/database",
+      "@envuso/app",
+      "@envuso/storage",
+      "@envuso/authentication",
     ],
     "typeRoots": [
-      // add path to @types
       "node_modules/@types",
-      "node_modules/@envuso/core/types"
     ],
     "paths": {
-      "@Core/*": [
-        "node_modules/@envuso/core/src/Core/*"
-      ],
-      "@Providers/*": [
-        "node_modules/@envuso/core/src/Core/Providers/*"
-      ],
-      "@Decorators": [
-        "node_modules/@envuso/core/src/Core/Decorators/index.ts"
-      ],
       "@App/*": [
         "src/App/*"
       ],
@@ -44,9 +40,6 @@
       "@AppMiddlewares/*": [
         "src/App/Http/Middleware/*"
       ],
-      "@Config": [
-        "src/Config/index.ts"
-      ]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

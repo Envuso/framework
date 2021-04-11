@@ -1,5 +1,5 @@
+import {Exception} from "@envuso/core";
 import {StatusCodes} from "http-status-codes";
-import {Exception} from "./Exception";
 
 export class UnauthorisedException extends Exception {
 

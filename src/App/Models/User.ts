@@ -1,14 +1,11 @@
-import {Id} from "@Core/Decorators/ModelDecorators";
-import {Exclude, Type} from "class-transformer";
+import {id, Model,} from "@envuso/core";
+import {Exclude} from "class-transformer";
 import {IsEmail, IsNotEmpty} from "class-validator";
-import {ModelEntity} from "@Providers/Model/ModelEntity";
-import {injectable} from "inversify";
 import {ObjectId} from "mongodb";
 
-@injectable()
-export class User extends ModelEntity<User> {
+export class User extends Model<User> {
 
-	@Id
+	@id
 	_id: ObjectId;
 
 	@IsEmail()
@@ -17,9 +14,7 @@ export class User extends ModelEntity<User> {
 
 	name: string;
 
-	displayName: string;
-
-	@Exclude({toPlainOnly : true})
+//	@Exclude({toPlainOnly : true})
 	password: string;
 
 	createdAt: Date;

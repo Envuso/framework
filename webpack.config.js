@@ -24,23 +24,20 @@ module.exports = {
 	mode      : 'development',
 	resolve   : {
 		modules    : [
-			path.resolve(__dirname, 'src', 'App', 'Http', 'Controller'),
-			path.resolve('node_modules', '@envuso', 'core', 'src'),
+			path.resolve(__dirname, 'src', 'App', 'Http', 'Controllers'),
+			path.resolve(__dirname, 'src', 'App', 'Models'),
+//			path.resolve('node_modules', '@envuso', 'core', 'src', 'index.ts')
 		],
 		alias      : {
-			'@Core'           : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core'),
-			'@Providers'      : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core', 'Providers'),
-			'@Decorators'     : path.resolve('node_modules', '@envuso', 'core', 'src', 'Core', 'Decorators', 'index.ts'),
 			'@App'            : path.resolve(__dirname, 'src', 'App'),
-			'@AppControllers' : path.resolve(__dirname, 'src', 'App', 'Http', 'Controller'),
+			'@AppControllers' : path.resolve(__dirname, 'src', 'App', 'Http', 'Controllers'),
 			'@AppMiddlewares' : path.resolve(__dirname, 'src', 'App', 'Http', 'Middleware'),
-			'@Config'         : path.resolve(__dirname, 'src', 'Config', 'index.ts'),
 		},
 		extensions : ['.tsx', '.ts', '.js'],
 	},
 	externals : [nodeExternals()],
 	output    : {
-		filename : '[id].js',
+		filename : 'main.js',
 		path     : path.resolve(__dirname, 'dist'),
 	},
 	plugins   : [

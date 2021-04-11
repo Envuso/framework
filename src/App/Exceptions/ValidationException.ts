@@ -1,6 +1,6 @@
+import {Exception} from "@envuso/core";
 import {ValidationError} from "class-validator";
 import {StatusCodes} from "http-status-codes";
-import {Exception} from "./Exception";
 
 export class ValidationException extends Exception {
 
