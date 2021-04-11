@@ -1,85 +1,107 @@
-import {AuthCredentialContract} from "@App/Contracts/AuthContracts";
-import {ValidationException} from "@App/Exceptions/ValidationException";
-import {AuthorizationMiddleware} from "@App/Http/Middleware/AuthorizationMiddleware";
-import {User} from "@App/Models/User";
-import { Auth, Hash  } from "@Core/Providers";
-import {controller, dto, get, middleware, post} from "@Decorators";
-import {Controller, DataTransferObject} from "@Providers/Http";
-import {Transform} from "class-transformer";
-import {IsAlphanumeric, IsEmail, IsNotEmpty, IsString, Length} from "class-validator";
+//import {User} from "@App/Models/User";
+import {AuthorizationMiddleware} from "./../../Middleware/AuthorizationMiddleware";
+import {JwtAuthenticationProvider} from "@envuso/authentication";
+import {
+	app,
+	Authenticatable,
+	Authentication,
+	Controller,
+	controller,
+	DataTransferObject,
+	dto,
+	get,
+	Hash,
+	inject,
+	middleware,
+	post,
+	resolve,
+	response
+} from "@envuso/core";
+import {IsEmail, IsString, Length} from "class-validator";
+import {StatusCodes} from "http-status-codes";
+
+import {User} from "../../../Models/User";
 
 
-class LoginBody extends DataTransferObject implements AuthCredentialContract {
+class LoginDTO extends DataTransferObject {
 	@IsEmail()
-	@IsNotEmpty()
-	public email: string;
+	@IsString()
+	email: string;
 
-	@Length(8, 255)
+	@Length(6, 250)
 	password: string;
 }
 
-class RegistrationBody extends LoginBody {
+class RegisterDTO extends LoginDTO {
 
-	@IsNotEmpty()
-	@Length(3, 25)
-	displayName?: string;
-
-	@Transform(({value}) => value.toLowerCase())
-	@IsString()
-	@IsAlphanumeric()
-	@Length(3, 20)
+	@Length(1)
 	name: string;
+
+	createdAt: Date;
 }
 
-@controller('/auth')
+@middleware(new AuthorizationMiddleware())
+@controller('/')
 export class AuthController extends Controller {
 
-	@post('/login')
-	async login(@dto() loginBody: LoginBody) {
 
-		if (!await Auth.attempt(loginBody)) {
-			throw new ValidationException({
-				message : 'Invalid credentials'
-			});
+	@post('/login')
+	public async login(@dto() loginDto: LoginDTO) {
+
+		const authentication = resolve(Authentication);
+
+		if (!await authentication.attempt(loginDto)) {
+			return {
+				error : 'Invalid credentials.'
+			}
 		}
 
+		const user = authentication.user();
 		return {
-			user  : Auth.user(),
-			token : Auth.user().generateToken()
-		};
+			user  : user,
+			token : authentication.getAuthProvider<JwtAuthenticationProvider>().issueToken((user as any)._id)
+		}
 	}
 
 	@post('/register')
-	async register(@dto() registration: RegistrationBody) {
+	public async register(@dto(false) registerDto: RegisterDTO) {
+		registerDto.throwIfFailed();
+		registerDto.createdAt = new Date();
 
-		if (!await Auth.canRegisterAs(registration)) {
-			throw new ValidationException({
-				username : 'Username is in use.'
-			});
-		}
+		const user     = new User();
+		user.email     = registerDto.email;
+		user.name      = registerDto.name;
+		user.password  = await Hash.make(registerDto.password);
+		user.createdAt = registerDto.createdAt;
+		await user.save();
 
-		const user = await User.create<User>({
-			name        : registration.name,
-			email       : registration.email,
-			password    : await Hash.make(registration.password),
-			displayName : registration.displayName,
-			createdAt   : new Date(),
-		});
+		const authentication = resolve(Authentication);
 
-		Auth.loginAs(user);
+		authentication.authoriseAs(<typeof Authenticatable><unknown>user);
 
 		return {
-			user  : Auth.user(),
-			token : Auth.user().generateToken()
+			user : authentication.user()
 		}
+
 	}
 
-	@middleware(new AuthorizationMiddleware())
 	@get('/user')
-	async authedUser() {
-		 return Auth.user();
+	public async user() {
+
+		return {
+			user : resolve(Authentication).user()
+		}
+
+	}
+
+	@get('/')
+	public async index() {
+//		const apppp = app();
+//		const users = await User.where<User>({}).get();
+//
+//		return response().setResponse({
+//			users
+//		}, StatusCodes.ACCEPTED)
 	}
 
 }
-
-
