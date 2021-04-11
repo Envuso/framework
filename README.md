@@ -7,6 +7,8 @@
 	<img alt="GitHub" src="https://img.shields.io/github/license/Envuso/framework">
 </p>
 
+# Warning:
+Envuso is currently a WIP. I'm currently resolving a couple of issues and getting everything ready. Docs are incomplete and I'm often pushing updates. Wait a week or so and it should be ready to use.
 
 ## Envuso framework
 
