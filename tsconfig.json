@@ -1,20 +1,20 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 14",
+
   "compilerOptions": {
-    "outDir": "dist",
+
+    "lib": ["es2020"],
     "module": "commonjs",
+    "target": "es2020",
+
+    "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "rootDir": ".",
-    "sourceRoot": "./src",
     "strict": false,
     "sourceMap": true,
     "moduleResolution": "node",
-    "target": "es6",
-    "lib": [
-      "es5",
-      "es6"
-    ],
     "types": [
       "node",
       "reflect-metadata",
@@ -32,20 +32,24 @@
     ],
     "paths": {
       "@App/*": [
-        "src/App/*"
+        "./src/App/*"
       ],
       "@AppControllers/*": [
-        "src/App/Http/Controllers/*"
+        "./src/App/Http/Controllers/*"
       ],
       "@AppMiddlewares/*": [
-        "src/App/Http/Middleware/*"
+        "./src/App/Http/Middleware/*"
       ],
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "isolatedModules": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "jest.config.ts",
+    "tests/example.test.ts"
   ]
 }

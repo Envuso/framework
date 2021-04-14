@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 	cache     : false,
 	entry     : {
-		main : './src/index.ts',
+		main   : './src/index.ts',
 	},
 	devtool   : 'inline-source-map',
 	target    : 'node',
@@ -37,8 +37,10 @@ module.exports = {
 	},
 	externals : [nodeExternals()],
 	output    : {
-		filename : 'main.js',
-		path     : path.resolve(__dirname, 'dist'),
+		//filename : 'main.js',
+//		main   : 'main.js',
+//		config : 'Config/index.js',
+		path   : path.resolve(__dirname, 'dist'),
 	},
 	plugins   : [
 //		new NodeHotLoaderWebpackPlugin({

@@ -20,7 +20,7 @@ import {
 import {IsEmail, IsString, Length} from "class-validator";
 import {StatusCodes} from "http-status-codes";
 
-import {User} from "../../../Models/User";
+import {User} from "@App/Models/User";
 
 
 class LoginDTO extends DataTransferObject {
