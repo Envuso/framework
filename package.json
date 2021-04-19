@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.0.3-alpha.1",
+  "version": "0.0.3-alpha.2",
   "scripts": {
     "serve": "nodemon dist/index.js",
     "build": "tsc -b --clean && tsc -b",
@@ -10,7 +10,6 @@
     "watchWebpack": "webpack --watch --progress --mode development",
     "buildwebpack": "webpack --mode production",
     "prepublishOnly": "npm run build && git add . && git commit -m\":package: Build\" && npm version prerelease --preid=alpha"
-
   },
   "dependencies": {
     "@babel/core": "^7.13.14",
