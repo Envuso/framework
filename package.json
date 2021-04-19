@@ -8,7 +8,9 @@
     "run": "ts-node ./src",
     "test": "jest",
     "watchWebpack": "webpack --watch --progress --mode development",
-    "buildwebpack": "webpack --mode production"
+    "buildwebpack": "webpack --mode production",
+    "prepublishOnly": "npm run build && git add . && git commit -m\":package: Build\" && npm version prerelease --preid=alpha"
+
   },
   "dependencies": {
     "@babel/core": "^7.13.14",
