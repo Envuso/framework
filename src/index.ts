@@ -2,7 +2,7 @@ import {Envuso, Log, response} from "@envuso/core";
 import {config} from 'dotenv';
 import {FastifyReply, FastifyRequest} from "fastify";
 import {StatusCodes} from "http-status-codes";
-import {Config} from "../Config/index";
+import {Config} from "./Config/index";
 
 config();
 

@@ -1,7 +1,7 @@
 import {JwtAuthenticationProvider} from "@envuso/authentication";
 import {ModelUserProvider} from "@envuso/core";
 import {SignOptions, VerifyOptions} from "jsonwebtoken";
-import {User} from "./../src/App/Models/User";
+import {User} from "../App/Models/User";
 
 
 export type AuthenticationIdentifier = keyof AuthCredentialContract;

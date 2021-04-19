@@ -11,7 +11,9 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+
+    "rootDir": "./src/",
+    "baseUrl": "./src/",
     "strict": false,
     "sourceMap": true,
     "moduleResolution": "node",
@@ -30,17 +32,6 @@
     "typeRoots": [
       "node_modules/@types",
     ],
-    "paths": {
-      "@App/*": [
-        "./src/App/*"
-      ],
-      "@AppControllers/*": [
-        "./src/App/Http/Controllers/*"
-      ],
-      "@AppMiddlewares/*": [
-        "./src/App/Http/Middleware/*"
-      ],
-    },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
@@ -51,5 +42,9 @@
     "node_modules",
     "jest.config.ts",
     "tests/example.test.ts"
+  ],
+  "include": [
+    "./src/Config/**/*",
+    "./src/**/*"
   ]
 }

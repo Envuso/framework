@@ -1,5 +1,4 @@
 import {id, Model} from "@envuso/core";
-import {Exclude} from "class-transformer";
 import {IsEmail, IsNotEmpty} from "class-validator";
 import {ObjectId} from "mongodb";
 

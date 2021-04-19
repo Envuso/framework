@@ -7,7 +7,7 @@ import {StorageServiceProvider} from "@envuso/storage";
 
 export default {
 
-	appKey : process.env.APP_KEY,
+	appKey : 'sfhsjkfhksjhdfkjshdj',//process.env.APP_KEY,
 
 	providers : [
 		CacheServiceProvider,

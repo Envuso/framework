@@ -1,8 +1,7 @@
-//import {User} from "@App/Models/User";
-import {AuthorizationMiddleware} from "./../../Middleware/AuthorizationMiddleware";
+import {User} from "../../../Models/User";
+import {AuthorizationMiddleware} from "../../Middleware/AuthorizationMiddleware";
 import {JwtAuthenticationProvider} from "@envuso/authentication";
 import {
-	app,
 	Authenticatable,
 	Authentication,
 	Controller,
@@ -11,16 +10,12 @@ import {
 	dto,
 	get,
 	Hash,
-	inject,
 	middleware,
 	post,
-	resolve,
-	response
+	resolve
 } from "@envuso/core";
 import {IsEmail, IsString, Length} from "class-validator";
-import {StatusCodes} from "http-status-codes";
 
-import {User} from "@App/Models/User";
 
 
 class LoginDTO extends DataTransferObject {
@@ -40,7 +35,6 @@ class RegisterDTO extends LoginDTO {
 	createdAt: Date;
 }
 
-@middleware(new AuthorizationMiddleware())
 @controller('/')
 export class AuthController extends Controller {
 
@@ -85,23 +79,12 @@ export class AuthController extends Controller {
 
 	}
 
+	@middleware(new AuthorizationMiddleware())
 	@get('/user')
 	public async user() {
-
 		return {
 			user : resolve(Authentication).user()
 		}
-
-	}
-
-	@get('/')
-	public async index() {
-//		const apppp = app();
-//		const users = await User.where<User>({}).get();
-//
-//		return response().setResponse({
-//			users
-//		}, StatusCodes.ACCEPTED)
 	}
 
 }
