@@ -39,22 +39,22 @@ class RegisterDTO extends LoginDTO {
 @controller('/')
 export class AuthController extends Controller {
 
-	constructor(@inject(Authentication) public authentication? : Authentication) {
+	constructor(public authentication? : Authentication) {
 		super()
 	}
 
 	@post('/login')
 	public async login(@dto() loginDto: LoginDTO) {
 
-//		const authentication = resolve(Authentication);
+		const authentication = resolve(Authentication);
 
-		if (!await this.authentication.attempt(loginDto)) {
+		if (!await authentication.attempt(loginDto)) {
 			return {
 				error : 'Invalid credentials.'
 			}
 		}
 
-		const user = this.authentication.user();
+		const user = authentication.user();
 		return {
 			user  : user,
 			token : this.authentication.getAuthProvider<JwtAuthenticationProvider>().issueToken((user as any)._id)
