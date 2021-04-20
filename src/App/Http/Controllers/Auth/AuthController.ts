@@ -1,15 +1,16 @@
 import {User} from "../../../Models/User";
 import {AuthorizationMiddleware} from "../../Middleware/AuthorizationMiddleware";
 import {JwtAuthenticationProvider} from "@envuso/authentication";
+//import {autoInjectable} from "@envuso/app";
 import {
 	Authenticatable,
-	Authentication,
+	Authentication, autoInjectable,
 	Controller,
 	controller,
 	DataTransferObject,
 	dto,
 	get,
-	Hash,
+	Hash, inject, injectable,
 	middleware,
 	post,
 	resolve
@@ -38,22 +39,25 @@ class RegisterDTO extends LoginDTO {
 @controller('/')
 export class AuthController extends Controller {
 
+	constructor(@inject(Authentication) public authentication? : Authentication) {
+		super()
+	}
 
 	@post('/login')
 	public async login(@dto() loginDto: LoginDTO) {
 
-		const authentication = resolve(Authentication);
+//		const authentication = resolve(Authentication);
 
-		if (!await authentication.attempt(loginDto)) {
+		if (!await this.authentication.attempt(loginDto)) {
 			return {
 				error : 'Invalid credentials.'
 			}
 		}
 
-		const user = authentication.user();
+		const user = this.authentication.user();
 		return {
 			user  : user,
-			token : authentication.getAuthProvider<JwtAuthenticationProvider>().issueToken((user as any)._id)
+			token : this.authentication.getAuthProvider<JwtAuthenticationProvider>().issueToken((user as any)._id)
 		}
 	}
 
@@ -69,12 +73,12 @@ export class AuthController extends Controller {
 		user.createdAt = registerDto.createdAt;
 		await user.save();
 
-		const authentication = resolve(Authentication);
+//		const authentication = resolve(Authentication);
 
-		authentication.authoriseAs(<typeof Authenticatable><unknown>user);
+		this.authentication.authoriseAs(<typeof Authenticatable><unknown>user);
 
 		return {
-			user : authentication.user()
+			user : this.authentication.user()
 		}
 
 	}
@@ -83,7 +87,7 @@ export class AuthController extends Controller {
 	@get('/user')
 	public async user() {
 		return {
-			user : resolve(Authentication).user()
+			user : this.authentication.user()
 		}
 	}
 

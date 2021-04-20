@@ -14,8 +14,8 @@ export default {
 		EncryptionServiceProvider,
 		DatabaseServiceProvider,
 		StorageServiceProvider,
-		RouteServiceProvider,
 		AuthenticationServiceProvider,
+		RouteServiceProvider,
 		ServerServiceProvider
 	],
 
