@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.1.2-alpha.13+3d1632d",
+  "version": "0.1.2-alpha.14+034f93c",
   "scripts": {
     "serve": "nodemon dist/index.js",
     "build": "tsc -b --clean && tsc -b",
@@ -18,12 +18,12 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.13.0",
     "@babel/plugin-transform-classes": "^7.13.0",
     "@envuso/app": "^0.1.2-alpha.9",
-    "@envuso/authentication": "^0.1.2-alpha.13+3d1632d",
+    "@envuso/authentication": "^0.1.2-alpha.14+034f93c",
     "@envuso/common": "^0.1.2-alpha.10",
-    "@envuso/core": "^0.1.2-alpha.13+3d1632d",
+    "@envuso/core": "^0.1.2-alpha.14+034f93c",
     "@envuso/database": "^0.1.2-alpha.10+cb21521",
-    "@envuso/routing": "^0.1.2-alpha.13+3d1632d",
-    "@envuso/storage": "^0.1.2-alpha.13+3d1632d",
+    "@envuso/routing": "^0.1.2-alpha.14+034f93c",
+    "@envuso/storage": "^0.1.2-alpha.14+034f93c",
     "@types/generic-pool": "^3.1.9",
     "@types/redis": "^2.8.28",
     "axios": "^0.21.1",
@@ -61,5 +61,5 @@
     "typescript": "^4.2.3",
     "webpack-node-externals": "^2.5.2"
   },
-  "gitHead": "3d1632d168d56116e3b8c1a959d06dd81f77e815"
+  "gitHead": "034f93c5ba10c6f4f387609e3011abe5baf0256c"
 }
