@@ -1,4 +1,4 @@
-import {S3Provider, StorageProviderContract} from "@envuso/storage";
+import {S3Provider, StorageProviderContract} from "@envuso/core/Storage";
 
 
 export type S3Config = {

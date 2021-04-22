@@ -1,16 +1,18 @@
-import {Envuso, Log, response} from "@envuso/core";
+import "reflect-metadata";
 import {config} from 'dotenv';
+config();
+import {Log} from "@envuso/core/Common";
+import {Envuso} from "@envuso/core/Core";
+import {response} from "@envuso/core/Routing";
 import {FastifyReply, FastifyRequest} from "fastify";
 import {StatusCodes} from "http-status-codes";
-import {Config} from "./Config/index";
+import {Config} from "./Config";
 
-config();
 
 //@ts-ignore
 global.disableConsoleLogs = false;
 
 const envuso = new Envuso();
-//const mainDir = require.main.path;
 
 envuso.prepare(Config)
 	.then(() => {
@@ -25,7 +27,7 @@ envuso.prepare(Config)
 		});
 	})
 	.catch(error => {
-		Log.error(error)
+		Log.error(error);
 		console.trace(error);
 	});
 

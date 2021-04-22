@@ -1,6 +1,7 @@
-import {JwtAuthenticationProvider} from "@envuso/authentication";
-import {ModelUserProvider} from "@envuso/core";
+
+import {JwtAuthenticationProvider} from "@envuso/core/Authentication";
 import {SignOptions, VerifyOptions} from "jsonwebtoken";
+import {ModelUserProvider} from "../../../Core/dist/Core";
 import {User} from "../App/Models/User";
 
 

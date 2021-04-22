@@ -1,15 +1,17 @@
-import {Authenticatable, Authentication, Middleware, RequestContext, resolve} from "@envuso/core";
+import {Middleware, RequestContext} from "@envuso/core/Routing";
+import {resolve} from "@envuso/core/AppContainer";
+import {Authentication} from "@envuso/core/Authentication";
 import {UnauthorisedException} from "../../Exceptions/UnauthorisedException";
+import {Authenticatable} from "@envuso/core/Common";
 
 
 export class AuthorizationMiddleware extends Middleware {
 
 	public async handler(context: RequestContext) {
-//		await resolve(AuthenticationProvider).authoriseRequest(request, response);
 
-		const auth = resolve(Authentication);
+		const authentication = resolve(Authentication);
 
-		const user = await auth
+		const user = await authentication
 			.getAuthProvider()
 			.authoriseRequest(context.request);
 
@@ -17,11 +19,12 @@ export class AuthorizationMiddleware extends Middleware {
 			throw new UnauthorisedException();
 		}
 
-		auth.authoriseAs(<typeof Authenticatable>user);
+		authentication.authoriseAs(<typeof Authenticatable>user);
 
-		if (!auth.check()) {
+		if (!authentication.check()) {
 			throw new UnauthorisedException();
 		}
+
 	}
 
 }

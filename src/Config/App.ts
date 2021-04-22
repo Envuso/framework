@@ -1,8 +1,8 @@
-import {AuthenticationServiceProvider} from "@envuso/authentication";
-import {CacheServiceProvider, EncryptionServiceProvider, ServerServiceProvider} from "@envuso/core";
-import {DatabaseServiceProvider} from "@envuso/database";
-import {RouteServiceProvider} from "@envuso/routing";
-import {StorageServiceProvider} from "@envuso/storage";
+import {AuthenticationServiceProvider} from "@envuso/core/Authentication";
+import {CacheServiceProvider, EncryptionServiceProvider, ServerServiceProvider} from "@envuso/core/Core";
+import {DatabaseServiceProvider} from "@envuso/core/Database";
+import {RouteServiceProvider} from "@envuso/core/Routing";
+import {StorageServiceProvider} from "@envuso/core/Storage";
 
 
 export default {

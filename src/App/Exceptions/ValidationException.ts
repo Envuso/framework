@@ -1,4 +1,4 @@
-import {Exception} from "@envuso/core";
+import {Exception} from "@envuso/core/Common";
 import {ValidationError} from "class-validator";
 import {StatusCodes} from "http-status-codes";
 
