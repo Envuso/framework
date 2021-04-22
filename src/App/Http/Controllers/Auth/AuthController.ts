@@ -1,7 +1,5 @@
-
 import {Authentication, JwtAuthenticationProvider} from "@envuso/core/Authentication";
 import {Controller, controller, DataTransferObject, dto, get, middleware, post} from "@envuso/core/Routing";
-import {resolve} from "@envuso/core/AppContainer";
 import {Authenticatable, Hash} from "@envuso/core/Common";
 import {User} from "../../../Models/User";
 import {AuthorizationMiddleware} from "../../Middleware/AuthorizationMiddleware";
