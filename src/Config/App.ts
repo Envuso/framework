@@ -11,7 +11,7 @@ import {
 
 export default {
 
-	appKey : 'sfhsjkfhksjhdfkjshdj',//process.env.APP_KEY,
+	appKey : process.env.APP_KEY,
 
 	providers : [
 		DatabaseServiceProvider,
