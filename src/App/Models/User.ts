@@ -1,8 +1,10 @@
+import {Authenticatable} from "@envuso/core/Common";
+import {Exclude, Expose} from "class-transformer";
 import {id, Model} from "@envuso/core/Database";
 import {IsEmail, IsNotEmpty} from "class-validator";
 import {ObjectId} from "mongodb";
 
-export class User extends Model<User> {
+export class User extends Authenticatable {
 
 	@id
 	_id: ObjectId;
@@ -11,10 +13,11 @@ export class User extends Model<User> {
 	@IsNotEmpty()
 	email: string;
 
+	@Expose()
 	name: string;
 
-//	@Exclude({toPlainOnly : true})
-	password: string;
+	@Exclude({toPlainOnly : true})
+	password?: string;
 
 	createdAt: Date;
 }

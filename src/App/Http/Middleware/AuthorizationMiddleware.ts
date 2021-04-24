@@ -1,8 +1,8 @@
 import {Middleware, RequestContext} from "@envuso/core/Routing";
 import {resolve} from "@envuso/core/AppContainer";
-import {Authentication} from "@envuso/core/Authentication";
+import {Auth, Authentication, JwtAuthenticationProvider} from "@envuso/core/Authentication";
 import {UnauthorisedException} from "../../Exceptions/UnauthorisedException";
-import {Authenticatable} from "@envuso/core/Common";
+import {User} from "../../Models/User";
 
 
 export class AuthorizationMiddleware extends Middleware {
@@ -11,15 +11,17 @@ export class AuthorizationMiddleware extends Middleware {
 
 		const authentication = resolve(Authentication);
 
-		const user = await authentication
-			.getAuthProvider()
+		const authedUser = await Auth
+			.getAuthProvider(JwtAuthenticationProvider)
 			.authoriseRequest(context.request);
+
+		const user = new User().setUser(authedUser);
 
 		if (!user) {
 			throw new UnauthorisedException();
 		}
 
-		authentication.authoriseAs(<typeof Authenticatable>user);
+		authentication.authoriseAs(user);
 
 		if (!authentication.check()) {
 			throw new UnauthorisedException();

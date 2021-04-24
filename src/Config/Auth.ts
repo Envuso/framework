@@ -1,7 +1,6 @@
-
+import {ModelUserProvider, SessionAuthenticationProvider} from "@envuso/core/Authentication";
 import {JwtAuthenticationProvider} from "@envuso/core/Authentication";
 import {SignOptions, VerifyOptions} from "jsonwebtoken";
-import {ModelUserProvider} from "../../../Core/dist/Core";
 import {User} from "../App/Models/User";
 
 
@@ -23,7 +22,7 @@ export default {
 	 * This will allow you to swap out authentication handling
 	 * and build your own custom providers for different things
 	 */
-	authenticationProvider : JwtAuthenticationProvider,
+	authenticationProviders : [JwtAuthenticationProvider],
 
 	/**
 	 * This will allow you to change how the user is acquired
@@ -63,4 +62,4 @@ export default {
 	}
 
 
-}
+};

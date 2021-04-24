@@ -1,8 +1,12 @@
-import {AuthenticationServiceProvider} from "@envuso/core/Authentication";
-import {CacheServiceProvider, EncryptionServiceProvider, ServerServiceProvider} from "@envuso/core/Core";
-import {DatabaseServiceProvider} from "@envuso/core/Database";
-import {RouteServiceProvider} from "@envuso/core/Routing";
-import {StorageServiceProvider} from "@envuso/core/Storage";
+import {
+	EncryptionServiceProvider,
+	AuthenticationServiceProvider,
+	RouteServiceProvider,
+	StorageServiceProvider,
+	CacheServiceProvider,
+	DatabaseServiceProvider,
+	ServerServiceProvider,
+} from "@envuso/core";
 
 
 export default {
@@ -10,13 +14,13 @@ export default {
 	appKey : 'sfhsjkfhksjhdfkjshdj',//process.env.APP_KEY,
 
 	providers : [
+		DatabaseServiceProvider,
 		CacheServiceProvider,
 		EncryptionServiceProvider,
-		DatabaseServiceProvider,
-		StorageServiceProvider,
 		AuthenticationServiceProvider,
 		RouteServiceProvider,
-		ServerServiceProvider
+		StorageServiceProvider,
+		ServerServiceProvider,
 	],
 
-}
+};

@@ -1,10 +1,10 @@
-import {Authentication, JwtAuthenticationProvider} from "@envuso/core/Authentication";
-import {Controller, controller, DataTransferObject, dto, get, middleware, post} from "@envuso/core/Routing";
-import {Authenticatable, Hash} from "@envuso/core/Common";
+import {JwtAuthenticationProvider} from "@envuso/core/Authentication";
+import {Auth} from "@envuso/core/Authentication";
+import {Controller, controller, DataTransferObject, dto, get, middleware, post, response} from "@envuso/core/Routing";
+import {Hash} from "@envuso/core/Common";
 import {User} from "../../../Models/User";
 import {AuthorizationMiddleware} from "../../Middleware/AuthorizationMiddleware";
 import {IsEmail, IsString, Length} from "class-validator";
-
 
 
 class LoginDTO extends DataTransferObject {
@@ -27,24 +27,21 @@ class RegisterDTO extends LoginDTO {
 @controller('/')
 export class AuthController extends Controller {
 
-	constructor(public authentication? : Authentication) {
-		super()
-	}
-
 	@post('/login')
 	public async login(@dto() loginDto: LoginDTO) {
 
-		if (!await this.authentication.attempt(loginDto)) {
+		if (!await Auth.attempt(loginDto)) {
 			return {
 				error : 'Invalid credentials.'
-			}
+			};
 		}
 
-		const user = this.authentication.user();
+		const user = Auth.user();
+
 		return {
 			user  : user,
-			token : this.authentication.getAuthProvider<JwtAuthenticationProvider>().issueToken((user as any)._id)
-		}
+			token : user.generateToken()
+		};
 	}
 
 	@post('/register')
@@ -59,19 +56,24 @@ export class AuthController extends Controller {
 		user.createdAt = registerDto.createdAt;
 		await user.save();
 
-		this.authentication.authoriseAs(<typeof Authenticatable><unknown>user);
+		Auth.authoriseAs(user);
 
 		return {
-			user : this.authentication.user()
-		}
+			user : Auth.user()
+		};
 	}
 
 	@middleware(new AuthorizationMiddleware())
 	@get('/user')
 	public async user() {
 		return {
-			user : this.authentication.user()
-		}
+			user : Auth.user()
+		};
+	}
+
+	@get('/user/:user')
+	async getUser(user: User) {
+		return user;
 	}
 
 }

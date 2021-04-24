@@ -1,35 +1,38 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Node 14",
-
   "compilerOptions": {
-
-    "lib": ["ES2016"],
+    "lib": [
+      "ES2016"
+    ],
     "module": "commonjs",
     "target": "ES2016",
-
+    "moduleResolution": "node",
     "outDir": "./dist",
+    "importHelpers": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-
     "rootDir": "./src/",
     "baseUrl": "./src/",
     "strict": false,
     "sourceMap": true,
-    "moduleResolution": "node",
     "types": [
       "node",
       "reflect-metadata",
       "jest"
     ],
     "typeRoots": [
-      "node_modules/@types",
-      "node_modules/@envuso/core"
+      "node_modules/@types"
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "class-transformer": [
+        "./../node_modules/class-transformer"
+      ]
+    }
   },
   "exclude": [
     "node_modules",

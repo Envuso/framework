@@ -39,7 +39,7 @@ export default {
 	responseSerialization : {
 		enableCircularCheck : true,
 //		excludeExtraneousValues : true,
-		excludePrefixes : ['_'],
+//		excludePrefixes : ['_'],
 		strategy        : "exposeAll"
 	} as ClassTransformOptions
 }
