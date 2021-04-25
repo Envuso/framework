@@ -1,5 +1,6 @@
 import {ClassTransformOptions} from "class-transformer/types/interfaces";
 import {FastifyPlugin, FastifyPluginOptions, FastifyServerOptions} from "fastify";
+import {FastifyCorsOptions} from "fastify-cors";
 import {default as FastifyMultipart, FastifyMultipartOptions} from "fastify-multipart";
 
 export default {
@@ -10,6 +11,21 @@ export default {
 	port : process.env.PORT ?? 3000,
 
 	/**
+	 * Cors is automatically configured internally due to some framework
+	 * configuration that needs to align. But you can also adjust the
+	 * configuration you wish to use here.
+	 */
+	cors : {
+		enabled : true,
+		options : {
+			origin      : [
+				// Configure your origin here.
+			],
+			credentials : true,
+		} as FastifyCorsOptions
+	},
+
+	/**
 	 * Server providers are Fastify Plugins that you register to the server when it's booted.
 	 */
 	fastifyPlugins : [
@@ -17,7 +33,6 @@ export default {
 			FastifyMultipart,
 			{} as FastifyMultipartOptions
 		],
-		[require('fastify-cors')],
 		[require('fastify-helmet'), {contentSecurityPolicy : false}]
 	] as Array<[FastifyPlugin, FastifyPluginOptions]>,
 
