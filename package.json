@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.1.5-alpha.0",
+  "version": "0.1.5-alpha.1",
   "scripts": {
     "serve": "nodemon dist/index.js",
     "build": "tsc -b --clean && tsc -b",
