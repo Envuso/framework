@@ -16,7 +16,9 @@ export default {
 		[
 			FastifyMultipart,
 			{} as FastifyMultipartOptions
-		]
+		],
+		[require('fastify-cors')],
+		[require('fastify-helmet'), {contentSecurityPolicy : false}]
 	] as Array<[FastifyPlugin, FastifyPluginOptions]>,
 
 	/**
@@ -38,8 +40,8 @@ export default {
 	 */
 	responseSerialization : {
 		enableCircularCheck : true,
-//		excludeExtraneousValues : true,
-//		excludePrefixes : ['_'],
-		strategy        : "exposeAll"
+		//		excludeExtraneousValues : true,
+		//		excludePrefixes : ['_'],
+		strategy : "exposeAll"
 	} as ClassTransformOptions
-}
+};
