@@ -15,13 +15,11 @@ export class AuthorizationMiddleware extends Middleware {
 			.getAuthProvider(JwtAuthenticationProvider)
 			.authoriseRequest(context.request);
 
-		const user = new User().setUser(authedUser);
-
-		if (!user) {
+		if (!authedUser) {
 			throw new UnauthorisedException();
 		}
 
-		authentication.authoriseAs(user);
+		authentication.authoriseAs(authedUser);
 
 		if (!authentication.check()) {
 			throw new UnauthorisedException();

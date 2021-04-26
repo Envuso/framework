@@ -36,7 +36,7 @@ export class AuthController extends Controller {
 			};
 		}
 
-		const user = Auth.user();
+		const user = Auth.user<User>();
 
 		return {
 			user  : user,
@@ -66,8 +66,11 @@ export class AuthController extends Controller {
 	@middleware(new AuthorizationMiddleware())
 	@get('/user')
 	public async user() {
+		const user = Auth.user<User>();
+
 		return {
-			user : Auth.user()
+			user,
+			id : Auth.id()
 		};
 	}
 

@@ -4,7 +4,7 @@ import {id, Model} from "@envuso/core/Database";
 import {IsEmail, IsNotEmpty} from "class-validator";
 import {ObjectId} from "mongodb";
 
-export class User extends Authenticatable {
+export class User extends Authenticatable<User> {
 
 	@id
 	_id: ObjectId;
