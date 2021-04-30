@@ -12,12 +12,12 @@
     "prep": "npm run build && git add . && git commit -m\":package: Build\" && npm version prerelease --preid=alpha"
   },
   "dependencies": {
-    "@envuso/core": "^0.1.5-alpha.7",
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-decorators": "^7.13.5",
     "@babel/plugin-proposal-private-property-in-object": "^7.13.0",
     "@babel/plugin-transform-classes": "^7.13.0",
+    "@envuso/core": "^0.1.5-alpha.17",
     "@types/generic-pool": "^3.1.9",
     "@types/redis": "^2.8.28",
     "axios": "^0.21.1",

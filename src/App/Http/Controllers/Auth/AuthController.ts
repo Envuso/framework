@@ -1,9 +1,7 @@
-import {JwtAuthenticationProvider} from "@envuso/core/Authentication";
 import {Auth} from "@envuso/core/Authentication";
-import {Controller, controller, DataTransferObject, dto, get, middleware, post, response} from "@envuso/core/Routing";
+import {Controller, controller, DataTransferObject, dto, get, JwtAuthenticationMiddleware, middleware, post, response, user} from "@envuso/core/Routing";
 import {Hash} from "@envuso/core/Common";
 import {User} from "../../../Models/User";
-import {AuthorizationMiddleware} from "../../Middleware/AuthorizationMiddleware";
 import {IsEmail, IsString, Length} from "class-validator";
 
 
@@ -63,11 +61,9 @@ export class AuthController extends Controller {
 		};
 	}
 
-	@middleware(new AuthorizationMiddleware())
+	@middleware(new JwtAuthenticationMiddleware())
 	@get('/user')
-	public async user() {
-		const user = Auth.user<User>();
-
+	public async user(@user user : User) {
 		return {
 			user,
 			id : Auth.id()

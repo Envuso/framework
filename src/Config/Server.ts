@@ -11,6 +11,13 @@ export default {
 	port : process.env.PORT ?? 3000,
 
 	/**
+	 * Global middlewares to apply to all requests
+	 *
+	 * Currently not implemented.
+	 */
+	middleware : [],
+
+	/**
 	 * Cors is automatically configured internally due to some framework
 	 * configuration that needs to align. But you can also adjust the
 	 * configuration you wish to use here.
