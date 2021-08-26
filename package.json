@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.1.5-alpha.4",
+  "version": "0.1.5-alpha.5",
   "scripts": {
     "serve": "ts-node-dev --respawn --rs --transpile-only ./src/index.ts ",
     "serve-nm": "nodemon dist/index.js",
