@@ -3,7 +3,7 @@ import {config} from 'dotenv';
 
 config();
 import {Log} from "@envuso/core/Common";
-import {Envuso} from "@envuso/core/Core";
+import {Envuso} from "@envuso/core";
 import {FastifyReply, FastifyRequest} from "fastify";
 import {ExceptionHandler} from "./App/Exceptions/ExceptionHandler";
 import {Config} from "./Config";

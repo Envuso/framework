@@ -1,4 +1,4 @@
-import {DateTime} from "@envuso/core";
+import {DateTime} from "@envuso/core/Common";
 import {CookieConfiguration} from "@envuso/core/Routing";
 
 export default {
