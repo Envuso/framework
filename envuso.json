@@ -1,0 +1,15 @@
+{
+  "projectRoot": "./",
+  "moduleMetaDirectory": "src",
+  "controllersDirectory": "src/App/Http/Controllers",
+  "configurationDirectory": "src/Config",
+  "ignoredFiles": [
+    "dist",
+    "src/Meta/ApplicationModules.ts",
+    "src/Meta/ApplicationRouteHelpers.ts",
+    "src/Meta/ApplicationRouteMeta.ts",
+    "src/Meta/ConfigContracts/**.ts"
+  ],
+  "outputCompiledFiles": false,
+  "tsConfigPath": "tsconfig.json"
+}

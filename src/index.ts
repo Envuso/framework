@@ -1,24 +1,18 @@
 import "reflect-metadata";
-import {config} from 'dotenv';
+import Environment from "@envuso/core/AppContainer/Config/Environment";
+import path from "path";
 
-config();
-import {Log} from "@envuso/core/Common";
+Environment.load(path.join(__dirname, '..', '.env'));
+
+import Configuration from "./Config/Configuration";
 import {Envuso} from "@envuso/core";
-import {FastifyReply, FastifyRequest} from "fastify";
-import {ExceptionHandler} from "./App/Exceptions/ExceptionHandler";
-import {Config} from "./Config";
-
-global.disableConsoleLogs = false;
+import {Log} from "@envuso/core/Common";
 
 const envuso = new Envuso();
 
-envuso.prepare(Config)
-	.then(() => {
-		envuso.addExceptionHandler(async (exception: Error, request: FastifyRequest, reply: FastifyReply) => {
-			console.trace(exception);
-			return ExceptionHandler.transform(exception, reply);
-		});
-	})
+Configuration.initiate()
+	.then(() => envuso.boot())
+	.then(() => envuso.serve())
 	.catch(error => {
 		Log.error(error);
 		console.trace(error);

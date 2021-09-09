@@ -1,53 +1,64 @@
+import Environment from "@envuso/core/AppContainer/Config/Environment";
+import {InertiaMiddleware} from "@envuso/core/Packages/Inertia/Middleware/InertiaMiddleware";
 import {ClassTransformOptions} from "class-transformer/types/interfaces";
 import {FastifyPlugin, FastifyPluginOptions, FastifyServerOptions} from "fastify";
 import {FastifyCorsOptions} from "fastify-cors";
 import {default as FastifyMultipart, FastifyMultipartOptions} from "fastify-multipart";
+import {ConfigurationCredentials} from "@envuso/core/AppContainer/Config/ConfigurationCredentials";
+import {ServerConfiguration as ServerConfig} from "@envuso/core/Contracts/Server/ServerContract";
+import {InjectViewGlobals} from "@envuso/core/Routing/Views/InjectViewGlobals";
+import {StartSessionMiddleware} from "@envuso/core/Session/Middleware/StartSessionMiddleware";
 
-export default {
+
+export class ServerConfiguration extends ConfigurationCredentials implements ServerConfig {
 
 	/**
 	 * The port that fastify will listen on
 	 */
-	port : process.env.PORT ?? 3000,
+	port = Environment.get<number>('PORT', 3000);
 
 	/**
-	 * Global middlewares to apply to all requests
-	 *
-	 * Currently not implemented.
+	 * Global middleware that will run on every application request
 	 */
-	middleware : [],
+	middleware = [
+		StartSessionMiddleware,
+		InjectViewGlobals,
+		InertiaMiddleware,
+	];
+
+	/**
+	 * Any cookie names that you wish to not encrypt/decrypt
+	 */
+	disableCookieEncryption = [];
 
 	/**
 	 * Cors is automatically configured internally due to some framework
 	 * configuration that needs to align. But you can also adjust the
 	 * configuration you wish to use here.
 	 */
-	cors : {
+	cors = {
 		enabled : true,
 		options : {
-			origin      : [
-				// Configure your origin here.
-			],
+			origin      : (origin: string, callback) => {
+				callback(null, true);
+			},
 			credentials : true,
 		} as FastifyCorsOptions
-	},
+	};
 
 	/**
 	 * Server providers are Fastify Plugins that you register to the server when it's booted.
 	 */
-	fastifyPlugins : [
-		[
-			FastifyMultipart,
-			{} as FastifyMultipartOptions
-		],
+	fastifyPlugins: Array<[FastifyPlugin, FastifyPluginOptions]> = [
+		[FastifyMultipart, {} as FastifyMultipartOptions],
 		[require('fastify-helmet'), {contentSecurityPolicy : false}]
-	] as Array<[FastifyPlugin, FastifyPluginOptions]>,
+	];
 
 	/**
 	 * Any options to pass to fastify when it boots
 	 *
 	 */
-	fastifyOptions : {} as FastifyServerOptions,
+	fastifyOptions: FastifyServerOptions = {};
 
 	/**
 	 * Before we return a response we serialize the result, mainly
@@ -57,13 +68,11 @@ export default {
 	 * excludeExtraneousValues can induce results that you might not
 	 * expect but helps prevent internal references used in your code
 	 * and the framework from being returned in a response.
-	 *
-	 * Disable at your own will.
 	 */
-	responseSerialization : {
+	responseSerialization: ClassTransformOptions = {
 		enableCircularCheck : true,
+		strategy            : "exposeAll",
 		//		excludeExtraneousValues : true,
-		//		excludePrefixes : ['_'],
-		strategy : "exposeAll"
-	} as ClassTransformOptions
-};
+	};
+
+}

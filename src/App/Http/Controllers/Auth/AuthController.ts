@@ -1,9 +1,18 @@
-import {Auth} from "@envuso/core/Authentication";
-import {Controller, controller, DataTransferObject, dto, get, JwtAuthenticationMiddleware, middleware, post, response, user} from "@envuso/core/Routing";
-import {Hash} from "@envuso/core/Common";
-import {User} from "../../../Models/User";
+import {
+	Controller,
+	controller,
+	DataTransferObject,
+	dto,
+	get,
+	JwtAuthenticationMiddleware,
+	middleware,
+	post,
+	user
+} from "@envuso/core/Routing";
+import {Hash} from "@envuso/core/Crypt";
 import {IsEmail, IsString, Length} from "class-validator";
-
+import {Auth} from "@envuso/core/Authentication";
+import {User} from "../../../Models/User";
 
 class LoginDTO extends DataTransferObject {
 	@IsEmail()
@@ -22,7 +31,7 @@ class RegisterDTO extends LoginDTO {
 	createdAt: Date;
 }
 
-@controller('/')
+@controller('/auth')
 export class AuthController extends Controller {
 
 	@post('/login')
@@ -44,7 +53,9 @@ export class AuthController extends Controller {
 
 	@post('/register')
 	public async register(@dto(false) registerDto: RegisterDTO) {
-		registerDto.throwIfFailed();
+
+		await registerDto.validate();
+
 		registerDto.createdAt = new Date();
 
 		const user     = new User();
@@ -63,7 +74,7 @@ export class AuthController extends Controller {
 
 	@middleware(new JwtAuthenticationMiddleware())
 	@get('/user')
-	public async user(@user user : User) {
+	public async user(@user user: User) {
 		return {
 			user,
 			id : Auth.id()
@@ -72,6 +83,7 @@ export class AuthController extends Controller {
 
 	@get('/user/:user')
 	async getUser(user: User) {
+
 		return user;
 	}
 
