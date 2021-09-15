@@ -3,7 +3,6 @@ import Environment from "@envuso/core/AppContainer/Config/Environment";
 import {
 	DatabaseConfiguration as DbConfig,
 	MongoConnectionConfiguration,
-	RedisConnectionConfiguration
 } from '@envuso/core/Contracts/Configuration/DatabaseConfigurationContracts';
 
 export class DatabaseConfiguration extends ConfigurationCredentials implements DbConfig {
@@ -14,20 +13,7 @@ export class DatabaseConfiguration extends ConfigurationCredentials implements D
 		clientOptions : {
 			ssl                : false,
 			readPreference     : "primaryPreferred",
-			useNewUrlParser    : true,
-			useUnifiedTopology : true
 		}
-	};
-
-	redis: RedisConnectionConfiguration = {
-		/**
-		 * Set this to false to disable redis integration
-		 */
-		enabled : true,
-
-		prefix : 'envuso-',
-		host   : '127.0.0.1',
-		port   : 6379,
 	};
 
 	/**

@@ -3,7 +3,7 @@ import {Inertia} from "@envuso/core/Packages/Inertia/Inertia";
 import {
 	Controller,
 	controller,
-	get, post,
+	get, post, request,
 	view
 } from "@envuso/core/Routing";
 
@@ -12,6 +12,7 @@ export class WelcomeController extends Controller {
 
 	@get('*')
 	public async welcome() {
+
 		return view('welcome');
 	}
 

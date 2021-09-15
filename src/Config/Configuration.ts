@@ -6,6 +6,7 @@ export default class Configuration extends ConfigurationFile {
 		this.add('app', import("./AppConfiguration"));
 		this.add('auth', import("./AuthConfiguration"));
 		this.add('database', import("./DatabaseConfiguration"));
+		this.add('redis', import("./RedisConfiguration"));
 		this.add('paths', import("./FilesystemPathsConfiguration"));
 		this.add('serialization', import("./SerializationConfiguration"));
 		this.add('server', import("./ServerConfiguration"));
@@ -15,6 +16,7 @@ export default class Configuration extends ConfigurationFile {
 		this.add('websockets', import("./WebsocketsConfiguration"));
 		this.add('inertia', import("./InertiaConfiguration"));
 		this.add('static', import("./StaticAssetConfiguration"));
+		this.add('queue', import("./QueueConfiguration"));
 	}
 
 }

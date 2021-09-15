@@ -32,7 +32,7 @@ class RegisterDTO extends LoginDTO {
 }
 
 @controller('/auth')
-export class AuthController extends Controller {
+export class AuthApiController extends Controller {
 
 	@post('/login')
 	public async login(@dto() loginDto: LoginDTO) {

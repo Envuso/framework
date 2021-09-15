@@ -1,5 +1,4 @@
 import Environment from "@envuso/core/AppContainer/Config/Environment";
-import {InertiaMiddleware} from "@envuso/core/Packages/Inertia/Middleware/InertiaMiddleware";
 import {ClassTransformOptions} from "class-transformer/types/interfaces";
 import {FastifyPlugin, FastifyPluginOptions, FastifyServerOptions} from "fastify";
 import {FastifyCorsOptions} from "fastify-cors";
@@ -8,6 +7,7 @@ import {ConfigurationCredentials} from "@envuso/core/AppContainer/Config/Configu
 import {ServerConfiguration as ServerConfig} from "@envuso/core/Contracts/Server/ServerContract";
 import {InjectViewGlobals} from "@envuso/core/Routing/Views/InjectViewGlobals";
 import {StartSessionMiddleware} from "@envuso/core/Session/Middleware/StartSessionMiddleware";
+import {SetInertiaSharedDataMiddleware} from "../App/Http/Middleware/SetInertiaSharedDataMiddleware";
 
 
 export class ServerConfiguration extends ConfigurationCredentials implements ServerConfig {
@@ -23,7 +23,7 @@ export class ServerConfiguration extends ConfigurationCredentials implements Ser
 	middleware = [
 		StartSessionMiddleware,
 		InjectViewGlobals,
-		InertiaMiddleware,
+		SetInertiaSharedDataMiddleware,
 	];
 
 	/**
