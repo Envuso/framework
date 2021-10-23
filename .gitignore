@@ -10,3 +10,6 @@ yarn.lock
 .yalc
 yalc.lock
 /yarn-error.log
+/assets/
+/src/Meta/ConfigContracts/
+/src/Meta/

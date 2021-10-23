@@ -12,6 +12,7 @@ import {
 	SessionServiceProvider,
 	EventServiceProvider,
 	AuthorizationServiceProvider,
+	WebSocketsServiceProvider,
 } from "@envuso/core";
 import {ServiceProviderContract} from "@envuso/core/Contracts/AppContainer/ServiceProviderContract";
 import {ExceptionHandlerConstructorContract} from "@envuso/core/Contracts/Common/Exception/ExceptionHandlerContract";
@@ -41,6 +42,7 @@ export class AppConfiguration extends ConfigurationCredentials implements Applic
 		StorageServiceProvider,
 		ServerServiceProvider,
 		InertiaServiceProvider,
+		WebSocketsServiceProvider
 	];
 
 	exceptionHandler: ExceptionHandlerConstructorContract = ExceptionHandler;
