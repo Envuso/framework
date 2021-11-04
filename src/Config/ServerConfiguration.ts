@@ -8,7 +8,12 @@ import {ServerConfiguration as ServerConfig} from "@envuso/core/Contracts/Server
 import {InjectViewGlobals} from "@envuso/core/Routing/Views/InjectViewGlobals";
 import {StartSessionMiddleware} from "@envuso/core/Session/Middleware/StartSessionMiddleware";
 import {SetInertiaSharedDataMiddleware} from "../App/Http/Middleware/SetInertiaSharedDataMiddleware";
-
+import {BindRequestContextHook} from "@envuso/core/Server/InternalHooks/BindRequestContextHook";
+import {ConvertEmptyStringsToNullHook} from "@envuso/core/Server/InternalHooks/ConvertEmptyStringsToNullHook";
+import {InitiateRequestContextHook} from "@envuso/core/Server/InternalHooks/InitiateRequestContextHook";
+import {ProcessUploadedFilesHook} from "@envuso/core/Server/InternalHooks/ProcessUploadedFilesHook";
+import {SaveSessionHook} from "@envuso/core/Server/InternalHooks/SaveSessionHook";
+import {SetResponseCookiesHook} from "@envuso/core/Server/InternalHooks/SetResponseCookiesHook";
 
 export class ServerConfiguration extends ConfigurationCredentials implements ServerConfig {
 
@@ -24,6 +29,23 @@ export class ServerConfiguration extends ConfigurationCredentials implements Ser
 		StartSessionMiddleware,
 		InjectViewGlobals,
 		SetInertiaSharedDataMiddleware,
+	];
+
+	/**
+	 * We have a custom wrapper of fastify's server hooks
+	 * This will allow us to extend fastify/framework logic a little
+	 *
+	 * Be warned, removing some of these may break some core logic handling of the server.
+	 *
+	 * @type {Array<HookTypes>}
+	 */
+	hooks: [
+		BindRequestContextHook,
+		InitiateRequestContextHook,
+		ConvertEmptyStringsToNullHook,
+		ProcessUploadedFilesHook,
+		SetResponseCookiesHook,
+		SaveSessionHook,
 	];
 
 	/**
