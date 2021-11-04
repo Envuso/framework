@@ -39,7 +39,7 @@ export class ServerConfiguration extends ConfigurationCredentials implements Ser
 	 *
 	 * @type {Array<HookTypes>}
 	 */
-	hooks: [
+	hooks = [
 		BindRequestContextHook,
 		InitiateRequestContextHook,
 		ConvertEmptyStringsToNullHook,
