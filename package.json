@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.15.4",
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v19.3.0",
     "@babel/preset-typescript": "^7.15.0",
     "@inertiajs/inertia": "^0.10.1",
     "@inertiajs/inertia-vue3": "^0.5.2",
