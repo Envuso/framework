@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="main">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+
+    <title>Welcome</title>
+</head>
+<style>
+	body {
+		font-family: 'Inter', sans-serif;
+	}
+	.main {
+		max-width  : 100vw;
+		max-height : 100vh;
+		height     : 100%;
+		width      : 100%;
+		overflow   : hidden;
+	}
+
+	.body-wrapper {
+		display         : flex;
+		flex-direction  : column;
+		justify-content : center;
+		align-items     : center;
+		background      : #F8FAFC;
+		height          : 100%;
+		width           : 100%;
+	}
+
+	.body-wrapper > .title {
+		font-size   : 1.75rem;
+		font-weight : 700;
+		color       : #334155;
+		margin: 0;
+		margin-bottom: 8px;
+		padding:0;
+	}
+
+	.body-wrapper > .subtitle {
+		color       : #64748B;
+		font-size   : 0.8rem;
+		font-weight : 400;
+		margin: 0;
+		padding:0;
+	}
+
+	.body-wrapper > .subtitle {
+		color       : #64748B;
+		font-size   : 0.8rem;
+		font-weight : 400;
+		margin: 0;
+		padding:0;
+	}
+	.body-wrapper > .subtitle-two {
+		color       : #64748B;
+		font-size   : 0.8rem;
+		font-weight : 400;
+		margin: 0;
+		margin-top: 10px;
+		padding:0;
+	}
+
+</style>
+<body class="body-wrapper">
+
+<p class="title">
+    Welcome!
+</p>
+
+<p class="subtitle">
+    Thanks for using Envuso, don't forget you can check out the documentation at: <a href="https://envuso.com" target="_blank">https://envuso.com</a>
+</p>
+<p class="subtitle-two">
+    Check out the Inertia.JS integration: <a href="{{route('WelcomeController.hello')}}">on this page</a>
+</p>
+
+</body>
+</html>

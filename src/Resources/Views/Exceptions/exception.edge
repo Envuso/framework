@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" class="main">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+
+    <title>{{title}}</title>
+</head>
+<style>
+	body {
+		font-family: 'Inter', sans-serif;
+	}
+	.main {
+		max-width  : 100vw;
+		max-height : 100vh;
+		height     : 100%;
+		width      : 100%;
+		overflow   : hidden;
+	}
+
+	.body-wrapper {
+		display         : flex;
+		flex-direction  : column;
+		justify-content : center;
+		align-items     : center;
+		background      : #F8FAFC;
+		height          : 100%;
+		width           : 100%;
+	}
+
+	.body-wrapper > .code {
+		font-size   : 3rem;
+		font-weight : 900;
+		color       : #475569;
+		margin: 0;
+		margin-bottom: 16px;
+		padding:0;
+	}
+
+	.body-wrapper > .title {
+		font-size   : 1.75rem;
+		font-weight : 700;
+		color       : #334155;
+		margin: 0;
+		margin-bottom: 8px;
+		padding:0;
+	}
+
+	.body-wrapper > .subtitle {
+		color       : #64748B;
+		font-size   : 0.8rem;
+		font-weight : 400;
+		margin: 0;
+		padding:0;
+	}
+
+	.body-wrapper > .stack {
+		margin-top: 30px;
+		background: #334155;
+		border-radius: 16px;
+		padding: 16px;
+		overflow-x:auto;
+		width: 100%;
+		max-width:calc(100vw - 100px);
+	    word-break: break-word;
+	    line-height: 24px;
+        font-size: 16px;
+        color: white;
+	}
+</style>
+<body class="body-wrapper">
+
+<p class="code">{{ code ?? 500 }}</p>
+<p class="title">
+    {{title ?? "Well... this is awkward."}}
+</p>
+<p class="subtitle">
+	{{ message ?? 'It looks like something is broken. We\'re sorry for that.' }}
+</p>
+
+@if(stack !== null && isDevelopment())
+	<div class="stack">
+		{{ stack }}
+	</div>
+@end
+
+</body>
+</html>

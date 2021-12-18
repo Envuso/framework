@@ -1,18 +1,18 @@
 import {injectable} from "@envuso/core/AppContainer";
+import {WebSocketConnectionContract} from "@envuso/core/Contracts/WebSockets/WebSocketConnectionContract";
 import {Middleware} from "@envuso/core/Routing";
-import {SocketChannelListener} from "@envuso/core/Sockets/SocketChannelListener";
-import {SocketConnection} from "@envuso/core/Sockets/SocketConnection";
-import {SocketPacket} from "@envuso/core/Sockets/SocketPacket";
+import {UserMessageSocketPacket} from "@envuso/core/WebSockets/SocketEventTypes";
+import {WebSocketChannelListener} from "@envuso/core/WebSockets/WebSocketChannelListener";
 import {User} from "../../Models/User";
 
 @injectable()
-export class HelloWorldSocketListener extends SocketChannelListener {
+export class HelloWorldSocketListener extends WebSocketChannelListener {
 
 	public channelName(): string {
 		return "hello-world";
 	}
 
-	public async isAuthorised(connection: SocketConnection, user: any): Promise<boolean> {
+	public async isAuthorised(connection: WebSocketConnectionContract<User>): Promise<boolean> {
 		return true;
 	}
 
@@ -20,10 +20,8 @@ export class HelloWorldSocketListener extends SocketChannelListener {
 		return [];
 	}
 
-	async message(connection: SocketConnection, user: User, packet: SocketPacket): Promise<any> {
-		const data = packet.getData();
-
-		this.broadcast('hello', 'world', {
+	async message(connection: WebSocketConnectionContract<User>, packet: UserMessageSocketPacket): Promise<any> {
+		this.broadcast('hello', {
 			message : 'Hey there.'
 		});
 	}

@@ -8,13 +8,13 @@
 	<img alt="Wakatime" src="https://wakatime.com/badge/github/Envuso/framework.svg">
 </p>
 
-# Warning:
-Envuso is currently a WIP. I'm currently resolving a couple of issues and getting everything ready. Docs are incomplete and I'm often pushing updates. Wait a week or so and it should be ready to use.
-
 ## Envuso framework
 
 Envuso is a backend framework focusing building apis using [Fastify](https://www.fastify.io/) and [MongoDB](https://www.mongodb.com/) support.
 
+You can also build monolith applications using inertiajs/edge.js views.
+
+I'd like to think it's almost a full batteries included framework, but there's still a couple of bits missing.
 
 ## Credits:
 

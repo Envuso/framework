@@ -3,10 +3,10 @@
   "display": "Node 14",
   "compilerOptions": {
     "lib": [
-      "ES2016"
+      "ESNext"
     ],
     "module": "commonjs",
-    "target": "ES2016",
+    "target": "ESNext",
     "moduleResolution": "node",
     "outDir": "./dist",
     "importHelpers": true,
