@@ -1,5 +1,5 @@
 import {ConfigurationCredentials} from "@envuso/core/AppContainer/Config/ConfigurationCredentials";
-import {DateTime} from "@envuso/core/Common/Utility/DateTime";
+import {DateTime} from "@envuso/date-time-helper";
 import {CookieConfiguration, SessionConfiguration as SessionConfig, SessionCookie} from "@envuso/core/Contracts/Session/Types";
 import {RedisSessionDriver} from "@envuso/core/Session/Drivers/RedisSessionDriver";
 import {SessionStorageDriver} from "@envuso/core/Session/Drivers/SessionStorageDriver";
