@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.1.5-alpha.5",
+  "version": "2.0.1",
   "scripts": {
     "front:build": "npx mix",
     "front:watch": "npx mix watch",
