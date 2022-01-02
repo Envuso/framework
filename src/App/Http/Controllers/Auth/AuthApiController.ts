@@ -7,7 +7,7 @@ import {
 	JwtAuthenticationMiddleware,
 	middleware,
 	post,
-	user
+	user,
 } from "@envuso/core/Routing";
 import {Hash} from "@envuso/core/Crypt";
 import {IsEmail, IsString, Length} from "class-validator";

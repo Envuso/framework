@@ -1,4 +1,3 @@
-import {Auth} from "@envuso/core/Authentication";
 import {RequestContextContract} from "@envuso/core/Contracts/Routing/Context/RequestContextContract";
 import {InertiaMiddleware} from "@envuso/core/Packages/Inertia/Middleware/InertiaMiddleware";
 import {User} from "../../Models/User";

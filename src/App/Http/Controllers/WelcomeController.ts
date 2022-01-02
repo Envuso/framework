@@ -3,8 +3,7 @@ import {Inertia} from "@envuso/core/Packages/Inertia/Inertia";
 import {
 	Controller,
 	controller,
-	get, post, request,
-	view
+	get, post, view
 } from "@envuso/core/Routing";
 
 @controller('/')

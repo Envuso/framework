@@ -1,7 +1,7 @@
 import {Inertia} from "@envuso/core/Packages/Inertia/Inertia";
 import {back, Controller, controller, DataTransferObject, dto, get, post, response,} from "@envuso/core/Routing";
 import {IsEmail, IsString, MinLength} from "class-validator";
-import {Auth, SessionAuthenticationProvider} from "@envuso/core/Authentication";
+import {Auth} from "@envuso/core/Authentication";
 import {User} from "../../../Models/User";
 
 class LoginDTO extends DataTransferObject {
