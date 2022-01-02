@@ -1,6 +1,6 @@
 {
   "name": "@envuso/framework",
-  "version": "0.1.5-alpha.5",
+  "version": "2.0.1",
   "scripts": {
     "front:build": "npx mix",
     "front:watch": "npx mix watch",
@@ -13,7 +13,9 @@
   "dependencies": {
     "@envuso/core": "^2.0.0-next.95",
     "@headlessui/vue": "^1.4.2",
-    "@heroicons/vue": "^1.0.5",
+    "@heroicons/vue": "^1",
+    "@headlessui/vue": "^1.4.2",
+    "@heroicons/vue": "^1.0.0.5",
     "@tailwindcss/forms": "^0.4.0",
     "axios": "^0.24.0",
     "class-transformer": "^0.5.1",
