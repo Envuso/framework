@@ -26,7 +26,7 @@ export default class StaticAssetConfiguration extends ConfigurationCredentials {
 	 *
 	 * @type {boolean}
 	 */
-	public watch: boolean = true;
+	public watch: boolean = false;
 
 	/**
 	 * When the above "watch" option is set to true, we can define any options here which will be passed to chokidar
