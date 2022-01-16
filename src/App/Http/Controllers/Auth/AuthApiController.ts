@@ -31,7 +31,7 @@ class RegisterDTO extends LoginDTO {
 	createdAt: Date;
 }
 
-@controller('/auth')
+@controller('/api/auth')
 export class AuthApiController extends Controller {
 
 	@post('/login')

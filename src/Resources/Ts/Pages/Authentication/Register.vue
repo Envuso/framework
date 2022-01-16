@@ -34,7 +34,7 @@
 					<label for="password" class="block text-sm font-medium text-gray-700">Name</label>
 					<div class="mt-1 relative rounded-md shadow-sm">
 						<input
-							type="password"
+							type="text"
 							name="name"
 							id="name"
 							:class="{
@@ -142,7 +142,7 @@ export default defineComponent({
 
 		const register = async () => {
 			form.clearErrors();
-			form.post('/register', {
+			form.post('/auth/register', {
 				onSuccess : () => {
 					console.log('Logged in');
 				}

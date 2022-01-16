@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@envuso/core": "^2.0.2",
+    "@envuso/core": "^2.0.5",
     "@headlessui/vue": "^1.4.2",
     "@heroicons/vue": "^1",
     "@tailwindcss/forms": "^0.3.4",

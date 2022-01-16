@@ -1,6 +1,7 @@
 import {RequestContextContract} from "@envuso/core/Contracts/Routing/Context/RequestContextContract";
 import {InertiaMiddleware} from "@envuso/core/Packages/Inertia/Middleware/InertiaMiddleware";
 import {User} from "../../Models/User";
+import {UserResource} from "../Resources/UserResource";
 
 
 export class SetInertiaSharedDataMiddleware extends InertiaMiddleware {
@@ -14,7 +15,7 @@ export class SetInertiaSharedDataMiddleware extends InertiaMiddleware {
 
 		await super.handle(context);
 
-		context.inertia.share('user', user);
+		context.inertia.share('user', user ? UserResource.from(user) : null);
 	}
 
 	share(context: RequestContextContract) {

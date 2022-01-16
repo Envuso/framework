@@ -87,7 +87,7 @@ export default defineComponent({
 
 		const login = async () => {
 			form.clearErrors();
-			form.post('/login', {
+			form.post('/auth/login', {
 				onSuccess : () => {
 					console.log('Logged in');
 				}
