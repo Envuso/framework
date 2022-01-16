@@ -14,7 +14,7 @@
     "@envuso/core": "^2.0.2",
     "@headlessui/vue": "^1.4.2",
     "@heroicons/vue": "^1",
-    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/forms": "^0.3.4",
     "axios": "^0.24.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
