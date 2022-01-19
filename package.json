@@ -5,6 +5,7 @@
     "front:build": "npx mix",
     "front:watch": "npx mix watch",
     "front:hot": "npx mix watch --hot",
+    "start" "npm run build && node dist/index.js",
     "serve": "ts-node-dev --respawn --rs --transpile-only ./src/index.ts ",
     "build": "tsc -b --clean && tsc -b",
     "run": "ts-node ./src",
