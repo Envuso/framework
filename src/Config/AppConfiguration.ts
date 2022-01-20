@@ -33,7 +33,7 @@ export class AppConfiguration extends ConfigurationCredentials implements Applic
 		SecurityServiceProvider,
 		SessionServiceProvider,
 		EventServiceProvider,
-		RedisServiceProvider,
+//		RedisServiceProvider,
 		DatabaseServiceProvider,
 		EncryptionServiceProvider,
 		AuthenticationServiceProvider,
