@@ -11,8 +11,7 @@ export class WelcomeController extends Controller {
 
 	@get('*')
 	public async welcome() {
-
-		return view('welcome');
+		return view('Welcome');
 	}
 
 	@get('/hello')
