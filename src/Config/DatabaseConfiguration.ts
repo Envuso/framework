@@ -11,7 +11,7 @@ export class DatabaseConfiguration extends ConfigurationCredentials implements D
 		name          : Environment.get<string>('DB_NAME', 'envuso'),
 		url           : Environment.get<string>('DB_URL', 'mongodb://127.0.0.1:27017'),
 		clientOptions : {
-			ssl                : false,
+			ssl                : true,
 			readPreference     : "primaryPreferred",
 		}
 	};
